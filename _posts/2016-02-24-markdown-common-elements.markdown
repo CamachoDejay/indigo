@@ -9,8 +9,9 @@ tag:
 - elements
 star: true
 category: blog
-author: johndoe
+author: Rafael Camacho
 description: Markdown summary with different options
+hidden: true # don't count this post in blog pagination
 ---
 
 ## Summary:

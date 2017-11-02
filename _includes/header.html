@@ -1,9 +1,12 @@
+<!-- check if the page title is Home Blog... if I want then I showHeader-->
 {% if page.title == "Home"
    or page.title == "Blog"
    or page.title == "Projects"
    or page.title == "Tags"
+   or page.title == "Research"
 %}{% assign showHeader = true %}{% endif %}
 
+<!-- now  we check if we want to generate a header or not-->
 {% if showHeader == true %}
     <header class="header-home {% if site.animation %}animated{% endif %}">
         {% if site.about %}
@@ -11,12 +14,21 @@
                 <img class="selfie" alt="{{ site.name }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
             </a>
         {% else %}
-            <span class="link">
-                <img class="selfie" alt="{{ site.name }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
-            </span>
+            <!-- this way I add a link to the image to go back to main -->
+            {% if page.title != "Home" %}
+              <a class="link" href="{{ site.url }}">
+                  <img class="selfie" alt="{{ site.name }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
+              </a>
+            {% else %}
+              <span class="link">
+                  <img class="selfie" alt="{{ site.name }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
+              </span>
+            {% endif %}
         {% endif %}
 
+        <!-- display site name, in this case the name John Doe -->
         <h1 class="title">{{ site.name }}</h1>
+        <!-- display site bio -->
         <h2 class="description">{{ site.bio }}</h2>
 
         {% include social-links.html %}
